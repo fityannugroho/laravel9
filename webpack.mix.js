@@ -11,6 +11,18 @@ const mix = require('laravel-mix');
  |
  */
 
+// === Mix configuration for both production and development environments ===
 mix.js('resources/js/app.js', 'public/js')
     .sass('resources/sass/app.scss', 'public/css')
     .sourceMaps();
+
+// === Mix configuration for development environment ===
+if (!mix.inProduction()) {
+    mix.disableNotifications();
+    mix.browserSync(process.env.MIX_BROWSER_SYNC_URL);
+}
+
+// === Mix configuration for production environment ===
+if (mix.inProduction()) {
+    mix.version();
+}
