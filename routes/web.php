@@ -19,6 +19,6 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Auth::routes();
+Auth::routes(['verify' => true]);
 
 Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
